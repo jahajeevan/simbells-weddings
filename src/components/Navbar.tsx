@@ -44,24 +44,31 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* Center logo lockup */}
-        <Link href="/" className="flex items-center gap-2.5 lg:flex-1 lg:justify-center">
+        {/* Center logo lockup — wordmark coloured to match the logo */}
+        <Link href="/" className="flex items-center gap-3 lg:flex-1 lg:justify-center">
           <Image
             src={solid ? "/logo-crest-color.png" : "/logo-crest-cream.png"}
             alt="SimBells emblem"
-            width={48}
-            height={55}
+            width={64}
+            height={73}
             priority
-            className="h-9 md:h-11 w-auto transition-all duration-500"
+            className="h-12 md:h-16 w-auto transition-all duration-500"
           />
           <span className="flex flex-col leading-none">
-            <span className={`font-display text-xl md:text-[1.6rem] tracking-[0.18em] leading-none transition-colors ${ink}`}>
-              SIMBELLS
+            <span className="font-display text-2xl md:text-[2.1rem] tracking-[0.14em] leading-none flex">
+              {"SIMBELLS".split("").map((ch, i) => (
+                <span
+                  key={i}
+                  style={{ color: i % 2 === 0 ? (solid ? "#C8102E" : "#EC6075") : (solid ? "#1B3A8C" : "#93B2F2") }}
+                >
+                  {ch}
+                </span>
+              ))}
             </span>
-            <span className={`font-serif italic text-[0.62rem] tracking-[0.28em] mt-1 ${solid ? "text-gold-deep" : "text-champagne"}`}>
+            <span className={`font-serif italic text-[0.72rem] md:text-[0.8rem] tracking-[0.28em] mt-1.5 ${solid ? "text-gold-deep" : "text-champagne"}`}>
               Wedding &amp; Events
             </span>
-            <span className={`font-serif italic text-[0.5rem] tracking-[0.12em] mt-0.5 ${solid ? "text-stone" : "text-cream/70"}`}>
+            <span className={`font-serif italic text-[0.58rem] md:text-[0.64rem] tracking-[0.12em] mt-1 ${solid ? "text-stone" : "text-cream/75"}`}>
               You Dream It, We Make It....
             </span>
           </span>
