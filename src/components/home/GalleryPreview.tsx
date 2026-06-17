@@ -3,12 +3,12 @@ import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 
 const shots = [
-  { src: "/images/indian4.jpg", cls: "row-span-2" },
+  { src: "/images/si_kanjivaram_couple.jpg", cls: "row-span-2" },
+  { src: "/images/si_akshintalu.jpg", cls: "" },
   { src: "/images/si_mehndi_hands.jpg", cls: "" },
-  { src: "/images/indian2.jpg", cls: "" },
-  { src: "/images/hero1.jpg", cls: "row-span-2" },
-  { src: "/images/indian5.jpg", cls: "" },
-  { src: "/images/indian11.jpg", cls: "" },
+  { src: "/images/si_floral_arch.jpg", cls: "row-span-2" },
+  { src: "/images/si_kerala_couple.jpg", cls: "" },
+  { src: "/images/si_temple_jewel.jpg", cls: "" },
 ];
 
 export function GalleryPreview() {

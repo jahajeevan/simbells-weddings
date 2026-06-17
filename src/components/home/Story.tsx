@@ -21,8 +21,8 @@ export function Story() {
         <Reveal className="relative">
           <div className="img-zoom relative aspect-[4/5] rounded-sm overflow-hidden">
             <Image
-              src="/images/mandap1.jpg"
-              alt="An ornate Indian wedding mandap with chandelier and floral arrangements"
+              src="/images/si_kerala_couple.jpg"
+              alt="A South Indian couple in white-and-gold attire with red rose garlands"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
@@ -31,7 +31,7 @@ export function Story() {
           {/* Floating accent image */}
           <div className="hidden md:block absolute -bottom-10 -right-6 w-44 h-56 rounded-sm overflow-hidden border-4 border-ivory shadow-2xl img-zoom">
             <Image
-              src="/images/indian11.jpg"
+              src="/images/si_temple_jewel.jpg"
               alt="South Indian gold temple jewellery"
               fill
               sizes="200px"

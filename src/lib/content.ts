@@ -52,7 +52,7 @@ export const SERVICE_COLLECTIONS = [
       "From the first muhurtham to the final farewell, we orchestrate every ritual, every detail, every emotion — so your family simply celebrates.",
     longBlurb:
       "A SimBells wedding is a single, calm choreography of dozens of moving pieces — booked, briefed, dressed and timed by one team. We work with families across Trichy to honour the traditions that matter, design the moments worth remembering, and quietly handle everything in between.",
-    image: "/images/mandap1.jpg",
+    image: "/images/si_kanjivaram_couple.jpg",
     services: ["Wedding Planning", "Pre Wedding Shoot", "Post Wedding Shoot", "Welcome Entries"],
     prefillEvent: "Wedding",
     prefillServices: ["Wedding Planning"],
@@ -66,7 +66,7 @@ export const SERVICE_COLLECTIONS = [
       "Mandaps that take the breath away. Traditional grandeur and modern themes, designed around your story and built to be remembered.",
     longBlurb:
       "Our décor team builds mandaps, stages and welcome entries that feel personal — from traditional gold and jasmine to florals, fabrics and bespoke themes. Every backdrop is designed for both the family in the hall and the camera in the corner.",
-    image: "/images/florals1.jpg",
+    image: "/images/si_floral_arch.jpg",
     services: ["Wedding Decoration", "Traditional Decoration", "Stage Decoration", "Theme Decoration", "Pandhal / Tent Setup"],
     prefillEvent: "Wedding",
     prefillServices: ["Stage & Décor"],
@@ -80,7 +80,7 @@ export const SERVICE_COLLECTIONS = [
       "Cinematic frames that hold the goosebumps forever. Candid, traditional, aerial — the way your day actually felt.",
     longBlurb:
       "From traditional album coverage to candid storytelling, cinematic films and drone aerials — our in-house photo and film team keeps the camera quiet, the lighting kind, and the resulting album something you'll re-open for years.",
-    image: "/images/indian6.jpg",
+    image: "/images/si_akshintalu.jpg",
     services: ["Photography", "Videography", "Candid Photography", "Drone Photography", "360 Camera", "Mirror Camera"],
     prefillEvent: "Wedding",
     prefillServices: ["Photography", "Videography"],
@@ -94,7 +94,7 @@ export const SERVICE_COLLECTIONS = [
       "Music, lights and spectacle that fill the room with joy. From Chenda Melam to a full DJ floor, the celebration never dips.",
     longBlurb:
       "We curate the evening — from the auspicious entry of Nadaswaram and Chenda Melam, through dance and magic shows, to a closing DJ floor under colour-mapped lighting. Every act sized to your space and guest list.",
-    image: "/images/indian5.jpg",
+    image: "/images/si_kanjivaram_couple.jpg",
     services: ["DJ", "Dance Shows", "Magic Shows", "Light Music Orchestra", "Chenda Melam", "Gun Shot Effects", "Celebrity Events", "Entertainment Events"],
     prefillEvent: "Wedding",
     prefillServices: ["DJ & Music", "Entertainment Shows"],
@@ -108,7 +108,7 @@ export const SERVICE_COLLECTIONS = [
       "Beyond the wedding — every milestone deserves its moment. Baby showers, birthdays, housewarmings and corporate evenings.",
     longBlurb:
       "Baby showers, first birthdays, housewarmings, anniversaries, corporate evenings — the smaller occasions matter to us as much as the grand ones. Same team, same care, scaled to suit.",
-    image: "/images/si_mehndi_hands.jpg",
+    image: "/images/si_kalasham_ritual.jpg",
     services: ["Baby Shower Events", "Birthday Events", "House Warming", "Corporate Events", "Kids Activities", "Ring Throw Games"],
     prefillEvent: "Birthday",
     prefillServices: ["Stage & Décor"],
@@ -152,7 +152,7 @@ export const PACKAGES = [
     tamilNote: "Intimate & Traditional",
     price: "₹1,00,000",
     priceNote: "Starting from",
-    image: "/images/indian4.jpg",
+    image: "/images/si_kerala_couple.jpg",
     description:
       "A complete, beautifully traditional wedding for close family — every essential, gracefully handled.",
     includes: [
@@ -171,7 +171,7 @@ export const PACKAGES = [
     tamilNote: "Most Chosen",
     price: "₹3,00,000",
     priceNote: "Starting from",
-    image: "/images/hero1.jpg",
+    image: "/images/si_kanjivaram_couple.jpg",
     description:
       "Our most-loved celebration — elevated décor, candid storytelling and an evening of entertainment.",
     includes: [
@@ -191,7 +191,7 @@ export const PACKAGES = [
     tamilNote: "The Full Spectacle",
     price: "₹5,00,000",
     priceNote: "Starting from",
-    image: "/images/indian5.jpg",
+    image: "/images/si_floral_arch.jpg",
     description:
       "No detail spared. A landmark wedding with bespoke themes, full entertainment and white-glove management.",
     includes: [
@@ -231,14 +231,14 @@ export const TESTIMONIALS = [
       "SimBells turned our daughter's wedding into something out of a film. The mandap, the lights, the way they handled every elder's request — we only had to enjoy the day.",
     name: "Lakshmi & Family",
     event: "Wedding · Trichy",
-    image: "/images/indian5.jpg",
+    image: "/images/si_kanjivaram_couple.jpg",
   },
   {
     quote:
       "We booked the Signature package and it exceeded every expectation. The candid film still gives us goosebumps. Simon is a true professional.",
     name: "Priya & Karthik",
     event: "Wedding & Reception",
-    image: "/images/indian5.jpg",
+    image: "/images/si_kerala_couple.jpg",
   },
   {
     quote:
@@ -250,22 +250,22 @@ export const TESTIMONIALS = [
 ];
 
 export const GALLERY = [
-  { src: "/images/hero1.jpg", category: "Wedding", span: "tall" },
-  { src: "/images/indian2.jpg", category: "Photography", span: "wide" },
-  { src: "/images/si_mehndi_hands.jpg", category: "Decoration", span: "normal" },
-  { src: "/images/indian4.jpg", category: "Wedding", span: "tall" },
-  { src: "/images/indian5.jpg", category: "Reception", span: "normal" },
+  { src: "/images/si_kanjivaram_couple.jpg", category: "Wedding", span: "tall" },
+  { src: "/images/si_akshintalu.jpg", category: "Photography", span: "wide" },
+  { src: "/images/si_mehndi_hands.jpg", category: "Photography", span: "normal" },
+  { src: "/images/si_kerala_couple.jpg", category: "Wedding", span: "tall" },
+  { src: "/images/si_floral_arch.jpg", category: "Decoration", span: "normal" },
+  { src: "/images/si_temple_jewel.jpg", category: "Decoration", span: "wide" },
+  { src: "/images/si_floral_stage.jpg", category: "Wedding", span: "tall" },
+  { src: "/images/si_kalasham_ritual.jpg", category: "Photography", span: "normal" },
+  { src: "/images/florals1.jpg", category: "Decoration", span: "wide" },
+  { src: "/images/mandap1.jpg", category: "Wedding", span: "normal" },
+  { src: "/images/indian2.jpg", category: "Photography", span: "tall" },
+  { src: "/images/indian4.jpg", category: "Wedding", span: "normal" },
   { src: "/images/indian11.jpg", category: "Decoration", span: "wide" },
-  { src: "/images/florals1.jpg", category: "Photography", span: "tall" },
-  { src: "/images/si_floral_stage.jpg", category: "Wedding", span: "normal" },
-  { src: "/images/indian6.jpg", category: "Reception", span: "wide" },
-  { src: "/images/indian6.jpg", category: "Photography", span: "normal" },
-  { src: "/images/indian5.jpg", category: "Wedding", span: "tall" },
-  { src: "/images/florals1.jpg", category: "Decoration", span: "normal" },
-  { src: "/images/mandap1.jpg", category: "Wedding", span: "tall" },
-  { src: "/images/indian2.jpg", category: "Decoration", span: "normal" },
-  { src: "/images/mandap1.jpg", category: "Wedding", span: "wide" },
-  { src: "/images/si_temple_jewel.jpg", category: "Decoration", span: "normal" },
+  { src: "/images/hero1.jpg", category: "Reception", span: "normal" },
+  { src: "/images/indian5.jpg", category: "Wedding", span: "wide" },
+  { src: "/images/indian6.jpg", category: "Reception", span: "normal" },
 ];
 
 export const GALLERY_CATEGORIES = ["All", "Wedding", "Reception", "Decoration", "Photography"];

@@ -14,108 +14,135 @@ export function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "55%"]);
-  const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  // Subtle parallax
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "16%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
+  const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section ref={ref} className="relative h-[100svh] min-h-[680px] w-full overflow-hidden bg-ink">
-      {/* Parallax floral mandap */}
-      <motion.div style={{ y }} className="absolute inset-0 -bottom-[22%]">
+    <section
+      ref={ref}
+      className="relative h-[100svh] min-h-[680px] w-full overflow-hidden bg-ink"
+    >
+      {/* Parallax floral arch — the image IS the hero */}
+      <motion.div style={{ y }} className="absolute inset-0 -bottom-[16%]">
         <Image
-          src="/images/si_floral_stage.jpg"
-          alt="A South Indian wedding mandap by SimBells — gold curtains, chandelier, floral garlands"
+          src="/images/si_floral_arch.jpg"
+          alt="A breathtaking floral arch mandap built by SimBells — pink and lavender roses, hydrangeas and hanging garlands"
           fill
           priority
           sizes="100vw"
           className="object-cover ken-burns"
         />
-        {/* Warm rose scrim — keeps imagery readable but warm, not heavy */}
+        {/* Soft scrim — darkens only the edges to keep text legible without
+            obscuring the floral image */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(58,42,34,0.55) 0%, rgba(58,42,34,0.18) 35%, rgba(217,167,161,0.18) 70%, rgba(252,247,239,0.55) 100%)",
+              "linear-gradient(180deg, rgba(58,42,34,0.5) 0%, rgba(58,42,34,0.08) 22%, rgba(58,42,34,0.0) 45%, rgba(58,42,34,0.55) 75%, rgba(58,42,34,0.88) 100%)",
           }}
         />
       </motion.div>
 
-      {/* Floating petals (CSS only) */}
-      <FloatingPetals count={10} />
+      {/* Floating petals — subtle */}
+      <FloatingPetals count={8} />
 
-      {/* Vertical caption */}
-      <div className="hidden md:block absolute right-8 top-1/2 -translate-y-1/2 z-10">
-        <span className="eyebrow text-ivory/80 [writing-mode:vertical-rl]">
+      {/* TOP — eyebrow with gold rules */}
+      <motion.div
+        style={{ opacity: fade }}
+        className="relative z-10 wrap section-x pt-28 md:pt-32 flex justify-center"
+      >
+        <div className="flex items-center gap-3">
+          <span className="h-px w-10 bg-gold/70" />
+          <span className="eyebrow text-ivory/90 text-[0.6rem]">
+            {BUSINESS.city} · Est. {BUSINESS.establishedYear} · A Floral-Couture Atelier
+          </span>
+          <span className="h-px w-10 bg-gold/70" />
+        </div>
+      </motion.div>
+
+      {/* Vertical right caption */}
+      <div className="hidden md:block absolute right-7 top-1/2 -translate-y-1/2 z-10">
+        <span className="eyebrow text-ivory/70 [writing-mode:vertical-rl] text-[0.55rem]">
           Cinematic Wedding Films · Trichy
         </span>
       </div>
 
-      {/* Content — glassmorphism card centered */}
+      {/* BOTTOM — editorial headline + CTAs, no container box */}
       <motion.div
         style={{ y: textY, opacity: fade }}
-        className="relative z-10 h-full wrap section-x flex flex-col justify-center items-center text-center pt-24 pb-20"
+        className="absolute inset-x-0 bottom-0 z-10 wrap section-x pb-16 md:pb-20"
       >
-        <div
-          className="rounded-2xl px-7 md:px-12 py-9 md:py-12 max-w-3xl"
-          style={{
-            background: "rgba(252, 247, 239, 0.86)",
-            backdropFilter: "blur(20px) saturate(140%)",
-            WebkitBackdropFilter: "blur(20px) saturate(140%)",
-            border: "1px solid rgba(227, 205, 158, 0.45)",
-            boxShadow: "0 24px 60px -16px rgba(58, 42, 34, 0.25), 0 8px 16px rgba(58, 42, 34, 0.08)",
-          }}
-        >
-          <div className="flex items-center justify-center gap-4 mb-5">
-            <span className="h-px w-10 bg-gold" />
-            <span className="eyebrow text-gold-deep">{BUSINESS.city} · Est. {BUSINESS.establishedYear}</span>
-            <span className="h-px w-10 bg-gold" />
-          </div>
+        <div className="max-w-3xl">
+          {/* Small italic prelude */}
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="font-serif italic text-blush text-[1.05rem] md:text-xl mb-4 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
+          >
+            Where every petal becomes a memory
+          </motion.p>
 
-          <p className="font-serif italic text-blush-deep text-[1.05rem] md:text-lg mb-4">
-            A floral-couture wedding atelier
-          </p>
-
-          <h1 className="font-display text-ink leading-[0.96] text-[2.2rem] sm:text-4xl md:text-5xl lg:text-[3.8rem]">
-            Where every <span className="italic font-light text-blush-grad">petal</span>
+          {/* Big editorial headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="font-display text-ivory leading-[0.95] text-[2.4rem] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.2rem] drop-shadow-[0_4px_24px_rgba(0,0,0,0.55)]"
+          >
+            Weddings <span className="italic font-light text-blush">crafted</span>
             <br />
-            <span className="italic font-light text-blush-grad">becomes</span> a memory.
-          </h1>
+            with <span className="italic font-light text-blush">grace.</span>
+          </motion.h1>
 
-          <p className="font-sans text-ink-soft text-base mt-6 max-w-xl mx-auto leading-relaxed">
-            Crafting weddings, decoration, photography and live experiences in
-            Trichy — with petals, candlelight and a little magic.
-          </p>
+          {/* Subline */}
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.55 }}
+            className="font-sans text-ivory/85 text-base md:text-lg mt-7 max-w-xl leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
+          >
+            A South-Indian wedding house in Trichy designing mandaps, films
+            and live experiences for families who only marry off a daughter once.
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
+          {/* CTAs — floating pills, no enclosing box */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.75 }}
+            className="flex flex-col sm:flex-row gap-3 mt-9"
+          >
             <Link
               href="/plan"
-              className="eyebrow btn-peach px-8 py-3.5 rounded-full text-[0.7rem]"
+              className="eyebrow btn-peach px-9 py-4 rounded-full text-[0.7rem]"
             >
               Book a Consultation →
             </Link>
             <Link
               href="/packages"
-              className="eyebrow border border-maroon/30 text-maroon px-8 py-3.5 rounded-full hover:bg-maroon hover:text-ivory transition-colors duration-300 text-[0.7rem]"
+              className="eyebrow inline-flex items-center justify-center border border-ivory/40 text-ivory px-9 py-4 rounded-full hover:bg-ivory/15 backdrop-blur-sm transition-colors duration-300 text-[0.7rem]"
             >
               View Wedding Packages
             </Link>
-          </div>
+            <a
+              href={waLink(`Hello ${BUSINESS.owner}! I'd love to plan my wedding with SimBells.`)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="eyebrow inline-flex items-center justify-center gap-2 text-ivory/85 hover:text-blush transition-colors text-[0.6rem] sm:ml-2"
+            >
+              <WhatsAppGlyph className="w-3.5 h-3.5" />
+              Or chat on WhatsApp
+            </a>
+          </motion.div>
         </div>
-
-        <a
-          href={waLink(`Hello ${BUSINESS.owner}! I'd love to plan my wedding with SimBells.`)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="eyebrow flex items-center gap-2 text-ivory mt-5 hover:text-gold transition-colors text-[0.6rem]"
-        >
-          <WhatsAppGlyph className="w-3.5 h-3.5" />
-          Or chat with Simon on WhatsApp
-        </a>
       </motion.div>
 
       {/* Scroll cue */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
-        <span className="eyebrow text-ivory/70 text-[0.55rem]">Scroll</span>
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2">
+        <span className="eyebrow text-ivory/60 text-[0.55rem]">Scroll</span>
         <motion.span
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
