@@ -47,7 +47,7 @@ const U = (id: string, w = 1600) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=85`;
 
 export const IMG = {
-  hero: U("photo-1583939003579-730e3918a45a", 2000),
+  hero: U("photo-1606800052052-a08af7148866", 2400),
   storyMain: U("photo-1604017011826-d3b4c23f8914", 1400),
   storyInset: U("photo-1583939411023-aebf2550c9ed", 700),
   whyUsBg: U("photo-1606216794074-735e91aa2c92", 2000),
@@ -86,7 +86,7 @@ export const SERVICE_COLLECTIONS = [
       "Mandaps that take the breath away. Grand floral arches, mirror-lit stages and bespoke themes — designed around your story, built to be photographed forever.",
     longBlurb:
       "Our décor team builds mandaps, stages and welcome entries that feel personal — from traditional gold and jasmine to florals, fabrics and bespoke themes. Every backdrop is designed for both the family in the hall and the camera in the corner.",
-    image: U("photo-1606800052052-a08af7148866", 1400),
+    image: U("photo-1490481651871-ab68de25d43d", 1400),
     services: ["Wedding Decoration", "Traditional Decoration", "Stage Decoration", "Theme Decoration", "Pandhal / Tent Setup"],
     prefillEvent: "Wedding",
     prefillServices: ["Stage & Décor"],

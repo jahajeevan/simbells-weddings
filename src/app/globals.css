@@ -47,54 +47,62 @@
 }
 
 :root {
-  /* Soft Sabyasachi / Taj-Hotels palette */
-  --ivory: #FCF7EF;
-  --cream: #F4EAD9;
-  --sand: #E8DCC4;
-  --champagne: #E3CD9E;
-  --gold: #C9A24B;
-  --gold-deep: #A67C2E;
-  --gold-light: #E4C977;
+  /* LIGHT ROSE-GOLD luxury palette — Vogue Weddings inspired */
+  --ivory: #FBF3EC;          /* primary section base */
+  --cream: #F5E5DA;          /* card / second surface */
+  --sand: #EFD9C9;
+  --bg-luxe: #F8EDE3;        /* hero soft peach */
+  --cream-luxe: #FBF2E9;     /* graded surface */
+
+  /* Rose-gold + bronze accents */
+  --champagne: #E0B894;
+  --gold: #D9A273;
+  --gold-deep: #B98758;
+  --gold-light: #F0CFA8;
+  --rose-gold: #D9A273;
+  --rose-gold-deep: #B98758;
+
+  /* Blush + rose */
   --blush: #F0D5D2;
   --blush-deep: #D9A7A1;
   --blush-pink: #E8C7C0;
-  --sage: #C8D2BA;
-  --sage-deep: #95A88A;
-  --maroon: #9C3F4D;
-  --maroon-deep: #6E1023;
-  --terracotta: #B07666;
-  --ink: #2B1D1A;
-  --ink-soft: #5C4F44;
-  --stone: #8C7E70;
-
-  /* New luxury rose-gold layer (Vogue-Weddings inspired) */
-  --bg-luxe: #F8F2EE;
-  --cream-luxe: #FAF5F0;
-  --rose-gold: #D9A273;
-  --rose-gold-deep: #B98758;
   --blush-luxe: #E8C7C1;
   --luxury-accent: #B76E79;
   --luxury-accent-deep: #8E4F5A;
 
-  /* shadcn tokens mapped */
-  --background: #FCF7EF;
-  --foreground: #3A2A22;
+  /* Maroon — deep rose */
+  --maroon: #8E4F5A;
+  --maroon-deep: #6F3B45;
+  --terracotta: #C49A8A;
+
+  /* Sage (kept subtle) */
+  --sage: #C8D2BA;
+  --sage-deep: #95A88A;
+
+  /* Text */
+  --ink: #2B1D1A;
+  --ink-soft: #5C4F44;
+  --stone: #8C7E70;
+
+  /* shadcn tokens mapped — LIGHT rose-gold */
+  --background: #FBF3EC;
+  --foreground: #2B1D1A;
   --card: #ffffff;
-  --card-foreground: #3A2A22;
+  --card-foreground: #2B1D1A;
   --popover: #ffffff;
-  --popover-foreground: #3A2A22;
-  --primary: #9C3F4D;
-  --primary-foreground: #FCF7EF;
-  --secondary: #F4EAD9;
-  --secondary-foreground: #3A2A22;
-  --muted: #F4EAD9;
+  --popover-foreground: #2B1D1A;
+  --primary: #B76E79;
+  --primary-foreground: #FBF3EC;
+  --secondary: #F5E5DA;
+  --secondary-foreground: #2B1D1A;
+  --muted: #F5E5DA;
   --muted-foreground: #8C7E70;
-  --accent: #C9A24B;
-  --accent-foreground: #3A2A22;
+  --accent: #D9A273;
+  --accent-foreground: #2B1D1A;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #E4D6BE;
-  --input: #E4D6BE;
-  --ring: #C9A24B;
+  --border: #E8C7C1;
+  --input: #E8C7C1;
+  --ring: #D9A273;
   --radius: 0.625rem;
 }
 
@@ -110,7 +118,7 @@
     scroll-behavior: smooth;
   }
   ::selection {
-    background: var(--blush-deep);
+    background: var(--rose-gold);
     color: var(--ivory);
   }
 }
@@ -307,26 +315,26 @@
     pointer-events: none;
   }
 
-  /* Premium glassmorphism */
+  /* Premium glassmorphism — LIGHT rose-gold */
   .glass {
-    background: rgba(252, 247, 239, 0.7);
+    background: rgba(251, 243, 236, 0.72);
     backdrop-filter: blur(18px) saturate(140%);
     -webkit-backdrop-filter: blur(18px) saturate(140%);
-    border: 1px solid rgba(227, 205, 158, 0.35);
-    box-shadow: 0 8px 32px -8px rgba(58, 42, 34, 0.12);
+    border: 1px solid rgba(217, 162, 115, 0.4);
+    box-shadow: 0 8px 32px -8px rgba(142, 79, 90, 0.18);
   }
   .glass-dark {
-    background: rgba(58, 42, 34, 0.55);
+    background: rgba(43, 29, 26, 0.55);
     backdrop-filter: blur(20px) saturate(140%);
     -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border: 1px solid rgba(227, 205, 158, 0.25);
-    box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(217, 162, 115, 0.3);
+    box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.4);
   }
   .glass-warm {
-    background: rgba(244, 234, 217, 0.75);
+    background: rgba(245, 229, 218, 0.85);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(201, 162, 75, 0.25);
+    border: 1px solid rgba(217, 162, 115, 0.4);
   }
 
   /* Premium card hover (subtle lift + soft glow) */
@@ -450,8 +458,8 @@
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 7px; }
-::-webkit-scrollbar-track { background: var(--cream); }
-::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+::-webkit-scrollbar-track { background: var(--ivory); }
+::-webkit-scrollbar-thumb { background: var(--rose-gold); border-radius: 4px; }
 
 /* Hide scrollbar utility for filter rows */
 .no-scrollbar::-webkit-scrollbar { display: none; }
