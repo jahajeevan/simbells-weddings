@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { AppointmentForm } from "@/components/AppointmentForm";
 import { Reveal } from "@/components/Reveal";
-import { BUSINESS } from "@/lib/content";
+import { BUSINESS, IMG } from "@/lib/content";
 import { Clock, MapPin, Phone } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export default function AppointmentPage() {
       {/* Soft hero — image, gold rule, headline, no heavy box */}
       <section className="relative h-[58vh] min-h-[420px] flex items-end overflow-hidden bg-ink">
         <Image
-          src="/images/si_kerala_couple.jpg"
+          src={IMG.appointmentHero}
           alt="A South Indian couple in white-and-gold attire"
           fill
           priority

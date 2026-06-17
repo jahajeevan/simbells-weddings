@@ -63,9 +63,18 @@
   --maroon: #9C3F4D;
   --maroon-deep: #6E1023;
   --terracotta: #B07666;
-  --ink: #3A2A22;
+  --ink: #2B1D1A;
   --ink-soft: #5C4F44;
   --stone: #8C7E70;
+
+  /* New luxury rose-gold layer (Vogue-Weddings inspired) */
+  --bg-luxe: #F8F2EE;
+  --cream-luxe: #FAF5F0;
+  --rose-gold: #D9A273;
+  --rose-gold-deep: #B98758;
+  --blush-luxe: #E8C7C1;
+  --luxury-accent: #B76E79;
+  --luxury-accent-deep: #8E4F5A;
 
   /* shadcn tokens mapped */
   --background: #FCF7EF;
@@ -130,6 +139,59 @@
 
   .bg-ivory { background-color: var(--ivory); }
   .bg-cream { background-color: var(--cream); }
+  .bg-bg-luxe { background-color: var(--bg-luxe); }
+  .bg-cream-luxe { background-color: var(--cream-luxe); }
+  .bg-rose-gold { background-color: var(--rose-gold); }
+  .bg-blush-luxe { background-color: var(--blush-luxe); }
+  .bg-luxury-accent { background-color: var(--luxury-accent); }
+  .text-rose-gold { color: var(--rose-gold); }
+  .text-rose-gold-deep { color: var(--rose-gold-deep); }
+  .text-luxury-accent { color: var(--luxury-accent); }
+  .text-luxury-accent-deep { color: var(--luxury-accent-deep); }
+  .text-blush-luxe { color: var(--blush-luxe); }
+  .border-rose-gold { border-color: var(--rose-gold); }
+  .border-luxury-accent { border-color: var(--luxury-accent); }
+
+  /* Rose-gold gradient text */
+  .text-rose-grad {
+    background: linear-gradient(100deg, var(--rose-gold-deep), var(--rose-gold), var(--blush-luxe), var(--luxury-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Luxe rose-gold CTA */
+  .btn-rose {
+    background: linear-gradient(105deg, var(--rose-gold) 0%, var(--luxury-accent) 100%);
+    color: #FAF5F0;
+    box-shadow: 0 10px 32px -10px rgba(183, 110, 121, 0.55), 0 2px 6px rgba(43, 29, 26, 0.12);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, filter 0.35s ease;
+  }
+  .btn-rose:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px -10px rgba(183, 110, 121, 0.65), 0 6px 12px rgba(43, 29, 26, 0.16);
+    filter: brightness(1.04);
+  }
+
+  /* Luxe shimmer sweep (for headlines & badges) */
+  .shimmer {
+    background: linear-gradient(100deg, var(--ink) 30%, var(--rose-gold) 50%, var(--ink) 70%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-sweep 4.5s linear infinite;
+  }
+
+  /* Card hover — luxury tilt */
+  .card-tilt {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease, border-color 0.6s ease;
+    will-change: transform;
+  }
+  .card-tilt:hover {
+    transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+    box-shadow: 0 30px 60px -20px rgba(183, 110, 121, 0.28), 0 10px 20px rgba(43, 29, 26, 0.08);
+  }
   .bg-sand { background-color: var(--sand); }
   .bg-blush { background-color: var(--blush); }
   .bg-blush-deep { background-color: var(--blush-deep); }
@@ -356,6 +418,26 @@
     animation: none !important;
   }
 }
+
+/* Shimmer sweep */
+@keyframes shimmer-sweep {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Soft luxury glow pulse */
+@keyframes luxe-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(217, 162, 115, 0.0), 0 0 30px rgba(183, 110, 121, 0.18); }
+  50%      { box-shadow: 0 0 0 12px rgba(217, 162, 115, 0.0), 0 0 60px rgba(183, 110, 121, 0.32); }
+}
+.luxe-glow { animation: luxe-glow 5s ease-in-out infinite; }
+
+/* Slow breathing zoom for hero stills */
+@keyframes breathe-zoom {
+  0%, 100% { transform: scale(1.06); }
+  50%      { transform: scale(1.12); }
+}
+.breathe-zoom { animation: breathe-zoom 14s ease-in-out infinite; }
 
 /* Page transition */
 @keyframes page-in {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PlanWizard } from "@/components/PlanWizard";
 import { PageHeader } from "@/components/PageHeader";
+import { IMG } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Plan My Event",
@@ -15,7 +16,7 @@ export default function PlanPage() {
         eyebrow="Let's Begin"
         title="Plan my"
         italic="event."
-        image="/images/mandap1.jpg"
+        image={IMG.planHero}
         alt="A couple in a cinematic landscape"
         subtitle="A few gentle questions — then Simon takes it from here."
       />

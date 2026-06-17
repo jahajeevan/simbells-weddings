@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
-import { BUSINESS, waLink } from "@/lib/content";
+import { BUSINESS, waLink, IMG } from "@/lib/content";
 import { InstagramIcon, FacebookIcon } from "@/components/SocialIcons";
 import { WhatsAppGlyph } from "@/components/WhatsAppButton";
 import { ContactForm } from "@/components/ContactForm";
@@ -20,7 +20,7 @@ export default function ContactPage() {
         eyebrow="Say Hello"
         title="Let's create"
         italic="something beautiful."
-        image="/images/indian6.jpg"
+        image={IMG.contactHero}
         alt="Joyful wedding ceremony"
         subtitle="Reach Simon directly — by call, WhatsApp, or in person at our Tennur studio."
       />

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import { GALLERY, GALLERY_CATEGORIES } from "@/lib/content";
+import { GALLERY, GALLERY_CATEGORIES, IMG } from "@/lib/content";
 
 export default function GalleryPage() {
   const [active, setActive] = useState("All");
@@ -16,7 +16,7 @@ export default function GalleryPage() {
     <>
       {/* Header */}
       <section className="relative h-[52vh] min-h-[380px] flex items-end overflow-hidden bg-ink">
-        <Image src="/images/indian4.jpg" alt="Saree bride portrait" fill priority sizes="100vw" className="object-cover" />
+        <Image src={IMG.hero} alt="A SimBells bridal portrait" fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 scrim-full" />
         <div className="relative z-10 wrap section-x pb-14 w-full">
           <div className="flex items-center gap-4 mb-5">

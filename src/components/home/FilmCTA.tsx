@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { FloralDivider } from "@/components/FloralDivider";
-import { BUSINESS, waLink } from "@/lib/content";
+import { BUSINESS, waLink, IMG } from "@/lib/content";
 import { WhatsAppGlyph } from "@/components/WhatsAppButton";
 
 export function FilmCTA() {
@@ -10,7 +10,7 @@ export function FilmCTA() {
     <section className="relative min-h-[80vh] flex items-center section-x py-32 overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src="/images/indian5.jpg"
+          src={IMG.filmCta}
           alt="A couple at sunset, veil flowing in the golden light"
           fill
           sizes="100vw"

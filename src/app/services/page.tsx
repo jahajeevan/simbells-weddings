@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
-import { SERVICE_COLLECTIONS, waLink } from "@/lib/content";
+import { SERVICE_COLLECTIONS, waLink, IMG } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -18,7 +18,7 @@ export default function ServicesPage() {
         eyebrow="What We Create"
         title="Everything, under"
         italic="one roof."
-        image="/images/si_mehndi_hands.jpg"
+        image={IMG.servicesHero}
         alt="Elegant wedding decoration"
         subtitle="Thirty-three services, one trusted team — so your family can simply celebrate."
       />

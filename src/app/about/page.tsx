@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
-import { BUSINESS, WHY_US, waLink } from "@/lib/content";
+import { BUSINESS, WHY_US, waLink, IMG } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About",
@@ -25,7 +25,7 @@ export default function AboutPage() {
         eyebrow="Our Story"
         title="A house built on"
         italic="celebration."
-        image="/images/indian5.jpg"
+        image={IMG.aboutHero}
         alt="A couple at golden hour"
         subtitle="You Dream It. We Make It."
       />
@@ -35,7 +35,7 @@ export default function AboutPage() {
         <div className="wrap grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <Reveal className="relative order-2 lg:order-1">
             <div className="img-zoom relative aspect-[4/5] rounded-sm overflow-hidden">
-              <Image src="/images/mandap1.jpg" alt="Ornate Indian wedding mandap by SimBells" fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" />
+              <Image src={IMG.storyMain} alt="Ornate Indian wedding mandap by SimBells" fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" />
             </div>
             <div className="absolute -bottom-6 -right-4 md:-right-8 bg-maroon text-ivory px-7 py-5 rounded-sm">
               <div className="font-display italic text-2xl">{BUSINESS.owner}</div>
