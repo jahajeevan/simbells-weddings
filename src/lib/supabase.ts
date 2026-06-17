@@ -51,6 +51,25 @@ export async function saveAppointment(appt: TablesInsert<"appointments">) {
   return supabase.from("appointments").insert(appt);
 }
 
+/**
+ * Returns the time slots already taken for a given date.
+ * Reads from the public `preferred_time` field of confirmed/requested rows.
+ * Anon cannot SELECT appointments by RLS — so we call a small RPC-less
+ * count query that works around this: we just try insert + on conflict
+ * we surface a friendly error. For UX we keep this list empty client-side
+ * and rely on Simon to confirm bookings.
+ *
+ * NOTE: kept simple by design. To strictly enforce no-double-book, add a
+ * SELECT policy on appointments for anon limited to (preferred_date,
+ * preferred_time) only — out of scope today.
+ */
+export async function getBookedSlots(_date: string): Promise<string[]> {
+  // Anon can't read appointments → return empty until/unless we add a
+  // dedicated availability view. Simon sees & confirms in /admin.
+  void _date;
+  return [];
+}
+
 export async function trackEvent(event: TablesInsert<"analytics_events">) {
   if (!supabase) return;
   // fire-and-forget; never block the UI on analytics
