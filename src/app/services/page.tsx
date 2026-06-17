@@ -18,7 +18,7 @@ export default function ServicesPage() {
         eyebrow="What We Create"
         title="Everything, under"
         italic="one roof."
-        image="/images/candid1.jpg"
+        image="/images/si_mehndi_hands.jpg"
         alt="Elegant wedding decoration"
         subtitle="Thirty-three services, one trusted team — so your family can simply celebrate."
       />

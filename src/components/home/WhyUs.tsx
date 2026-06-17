@@ -8,7 +8,7 @@ export function WhyUs() {
       {/* Full-bleed cinematic background */}
       <div className="absolute inset-0">
         <Image
-          src="/images/couple2.jpg"
+          src="/images/mandap1.jpg"
           alt="A couple in a sweeping cinematic landscape at dusk"
           fill
           sizes="100vw"

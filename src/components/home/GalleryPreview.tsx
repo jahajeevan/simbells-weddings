@@ -4,10 +4,10 @@ import { Reveal } from "@/components/Reveal";
 
 const shots = [
   { src: "/images/indian4.jpg", cls: "row-span-2" },
-  { src: "/images/candid1.jpg", cls: "" },
+  { src: "/images/si_mehndi_hands.jpg", cls: "" },
   { src: "/images/indian2.jpg", cls: "" },
   { src: "/images/hero1.jpg", cls: "row-span-2" },
-  { src: "/images/bride1.jpg", cls: "" },
+  { src: "/images/indian5.jpg", cls: "" },
   { src: "/images/indian11.jpg", cls: "" },
 ];
 

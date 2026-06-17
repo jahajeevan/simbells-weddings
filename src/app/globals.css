@@ -30,10 +30,14 @@
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
 
-  /* SimBells — Maison Editorial palette */
+  /* SimBells — Sabyasachi blush palette */
   --color-ivory: var(--ivory);
   --color-cream: var(--cream);
   --color-sand: var(--sand);
+  --color-blush: var(--blush);
+  --color-blush-deep: var(--blush-deep);
+  --color-sage: var(--sage);
+  --color-sage-deep: var(--sage-deep);
   --color-champagne: var(--champagne);
   --color-gold: var(--gold);
   --color-gold-deep: var(--gold-deep);
@@ -43,39 +47,46 @@
 }
 
 :root {
-  /* Editorial wedding palette */
-  --ivory: #FBF7EF;
+  /* Soft Sabyasachi / Taj-Hotels palette */
+  --ivory: #FCF7EF;
   --cream: #F4EAD9;
-  --sand: #EBDCC4;
+  --sand: #E8DCC4;
   --champagne: #E3CD9E;
   --gold: #C9A24B;
   --gold-deep: #A67C2E;
-  --maroon: #6E1023;
-  --maroon-deep: #4A0E1A;
-  --ink: #2B2118;
-  --ink-soft: #4a4036;
-  --stone: #8A7B68;
+  --gold-light: #E4C977;
+  --blush: #F0D5D2;
+  --blush-deep: #D9A7A1;
+  --blush-pink: #E8C7C0;
+  --sage: #C8D2BA;
+  --sage-deep: #95A88A;
+  --maroon: #9C3F4D;
+  --maroon-deep: #6E1023;
+  --terracotta: #B07666;
+  --ink: #3A2A22;
+  --ink-soft: #5C4F44;
+  --stone: #8C7E70;
 
   /* shadcn tokens mapped */
-  --background: #FBF7EF;
-  --foreground: #2B2118;
+  --background: #FCF7EF;
+  --foreground: #3A2A22;
   --card: #ffffff;
-  --card-foreground: #2B2118;
+  --card-foreground: #3A2A22;
   --popover: #ffffff;
-  --popover-foreground: #2B2118;
-  --primary: #6E1023;
-  --primary-foreground: #FBF7EF;
+  --popover-foreground: #3A2A22;
+  --primary: #9C3F4D;
+  --primary-foreground: #FCF7EF;
   --secondary: #F4EAD9;
-  --secondary-foreground: #2B2118;
+  --secondary-foreground: #3A2A22;
   --muted: #F4EAD9;
-  --muted-foreground: #8A7B68;
+  --muted-foreground: #8C7E70;
   --accent: #C9A24B;
-  --accent-foreground: #2B2118;
+  --accent-foreground: #3A2A22;
   --destructive: oklch(0.577 0.245 27.325);
   --border: #E4D6BE;
   --input: #E4D6BE;
   --ring: #C9A24B;
-  --radius: 0.5rem;
+  --radius: 0.625rem;
 }
 
 @layer base {
@@ -90,8 +101,8 @@
     scroll-behavior: smooth;
   }
   ::selection {
-    background: var(--gold);
-    color: var(--ink);
+    background: var(--blush-deep);
+    color: var(--ivory);
   }
 }
 
@@ -100,19 +111,30 @@
   .font-serif { font-family: var(--font-serif); }
   .font-sans { font-family: var(--font-sans); }
 
+  /* Colours */
   .text-ivory { color: var(--ivory); }
   .text-cream { color: var(--cream); }
   .text-champagne { color: var(--champagne); }
+  .text-blush { color: var(--blush); }
+  .text-blush-deep { color: var(--blush-deep); }
+  .text-sage { color: var(--sage); }
+  .text-sage-deep { color: var(--sage-deep); }
   .text-gold { color: var(--gold); }
   .text-gold-deep { color: var(--gold-deep); }
   .text-maroon { color: var(--maroon); }
+  .text-maroon-deep { color: var(--maroon-deep); }
+  .text-terracotta { color: var(--terracotta); }
   .text-ink { color: var(--ink); }
+  .text-ink-soft { color: var(--ink-soft); }
   .text-stone { color: var(--stone); }
 
   .bg-ivory { background-color: var(--ivory); }
   .bg-cream { background-color: var(--cream); }
   .bg-sand { background-color: var(--sand); }
+  .bg-blush { background-color: var(--blush); }
+  .bg-blush-deep { background-color: var(--blush-deep); }
   .bg-champagne { background-color: var(--champagne); }
+  .bg-sage { background-color: var(--sage); }
   .bg-gold { background-color: var(--gold); }
   .bg-gold-deep { background-color: var(--gold-deep); }
   .bg-maroon { background-color: var(--maroon); }
@@ -120,8 +142,10 @@
 
   .border-gold { border-color: var(--gold); }
   .border-champagne { border-color: var(--champagne); }
+  .border-blush { border-color: var(--blush); }
+  .border-sage { border-color: var(--sage); }
 
-  /* Editorial eyebrow label */
+  /* Editorial eyebrow */
   .eyebrow {
     font-family: var(--font-sans);
     font-weight: 400;
@@ -132,10 +156,30 @@
 
   /* Gold gradient text */
   .text-gold-grad {
-    background: linear-gradient(100deg, var(--gold-deep), var(--gold), var(--champagne), var(--gold));
+    background: linear-gradient(100deg, var(--gold-deep), var(--gold), var(--gold-light), var(--gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  /* Blush gradient text */
+  .text-blush-grad {
+    background: linear-gradient(100deg, var(--blush-deep), var(--terracotta), var(--maroon));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Peach CTA gradient — premium Lovable-style */
+  .btn-peach {
+    background: linear-gradient(105deg, var(--gold-light) 0%, var(--blush-deep) 60%, var(--terracotta) 100%);
+    color: var(--ink);
+    box-shadow: 0 8px 24px -8px rgba(217, 167, 161, 0.55), 0 2px 4px rgba(58, 42, 34, 0.08);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+  .btn-peach:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px -8px rgba(217, 167, 161, 0.65), 0 4px 8px rgba(58, 42, 34, 0.12);
   }
 
   /* Thin ornate gold rule */
@@ -165,37 +209,83 @@
 
   /* Image scrims */
   .scrim-b {
-    background: linear-gradient(to top, rgba(20,14,8,0.78) 0%, rgba(20,14,8,0.25) 45%, rgba(20,14,8,0.05) 70%, rgba(20,14,8,0.15) 100%);
+    background: linear-gradient(to top, rgba(58, 42, 34, 0.78) 0%, rgba(58, 42, 34, 0.25) 45%, rgba(58, 42, 34, 0.05) 70%, rgba(58, 42, 34, 0.15) 100%);
   }
   .scrim-full {
-    background: linear-gradient(to top, rgba(20,14,8,0.7) 0%, rgba(20,14,8,0.3) 50%, rgba(20,14,8,0.55) 100%);
+    background: linear-gradient(to top, rgba(58, 42, 34, 0.65) 0%, rgba(58, 42, 34, 0.18) 50%, rgba(58, 42, 34, 0.45) 100%);
   }
   .scrim-soft {
-    background: linear-gradient(to top, rgba(20,14,8,0.55) 0%, rgba(20,14,8,0.05) 60%);
+    background: linear-gradient(to top, rgba(58, 42, 34, 0.55) 0%, rgba(58, 42, 34, 0.05) 60%);
+  }
+  .scrim-blush {
+    background: linear-gradient(to top, rgba(217, 167, 161, 0.35) 0%, rgba(252, 247, 239, 0) 70%);
   }
 
-  /* Editorial image hover */
+  /* Cinematic image hover — soft scale + slow */
   .img-zoom { overflow: hidden; }
   .img-zoom img {
-    transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .img-zoom:hover img {
     transform: scale(1.06);
   }
 
-  /* Glass chip */
-  .glass {
-    background: rgba(251, 247, 239, 0.12);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(227, 205, 158, 0.35);
+  /* Cinematic image reveal */
+  .img-reveal {
+    overflow: hidden;
+    position: relative;
   }
-  .glass-cream {
-    background: rgba(251, 247, 239, 0.72);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+  .img-reveal::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ivory);
+    transform-origin: right;
+    animation: image-reveal 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    pointer-events: none;
+  }
+
+  /* Premium glassmorphism */
+  .glass {
+    background: rgba(252, 247, 239, 0.7);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(227, 205, 158, 0.35);
+    box-shadow: 0 8px 32px -8px rgba(58, 42, 34, 0.12);
+  }
+  .glass-dark {
+    background: rgba(58, 42, 34, 0.55);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid rgba(227, 205, 158, 0.25);
+    box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.35);
+  }
+  .glass-warm {
+    background: rgba(244, 234, 217, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     border: 1px solid rgba(201, 162, 75, 0.25);
   }
+
+  /* Premium card hover (subtle lift + soft glow) */
+  .card-luxe {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    will-change: transform;
+  }
+  .card-luxe:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px -16px rgba(156, 63, 77, 0.18), 0 8px 16px rgba(58, 42, 34, 0.08);
+  }
+}
+
+/* ============================================================
+   ANIMATIONS — luxury, restrained, performance-aware
+   ============================================================ */
+
+/* Image reveal swipe */
+@keyframes image-reveal {
+  0%   { transform: scaleX(1); }
+  100% { transform: scaleX(0); }
 }
 
 /* WhatsApp pulse */
@@ -221,6 +311,59 @@
   display: inline-flex;
   white-space: nowrap;
   animation: marquee 38s linear infinite;
+}
+
+/* Floating petals — calm botanical motion */
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.55;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate3d(20px, 110vh, 0) rotate(360deg);
+    opacity: 0;
+  }
+}
+@keyframes petal-sway {
+  0%, 100% { transform: translateX(0); }
+  50%     { transform: translateX(28px); }
+}
+
+.petal {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+  animation: petal-fall var(--dur, 18s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  will-change: transform, opacity;
+}
+.petal svg {
+  width: 100%;
+  height: 100%;
+  animation: petal-sway 5s ease-in-out infinite;
+  animation-delay: calc(var(--delay, 0s) * -1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .petal, .ken-burns, .marquee-track, .wa-pulse, .img-reveal::after {
+    animation: none !important;
+  }
+}
+
+/* Page transition */
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-in {
+  animation: page-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Scrollbar */

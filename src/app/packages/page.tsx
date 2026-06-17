@@ -85,7 +85,7 @@ export default function PackagesPage() {
 
       {/* CTA band */}
       <section className="relative py-28 section-x overflow-hidden">
-        <Image src="/images/stage1.jpg" alt="Wedding couple by the sea" fill sizes="100vw" className="object-cover" />
+        <Image src="/images/si_floral_stage.jpg" alt="Wedding couple by the sea" fill sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 scrim-full" />
         <div className="relative wrap-narrow text-center">
           <Reveal>

@@ -15,7 +15,7 @@ export default function PlanPage() {
         eyebrow="Let's Begin"
         title="Plan my"
         italic="event."
-        image="/images/couple2.jpg"
+        image="/images/mandap1.jpg"
         alt="A couple in a cinematic landscape"
         subtitle="A few gentle questions — then Simon takes it from here."
       />
