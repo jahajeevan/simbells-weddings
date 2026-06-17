@@ -5,6 +5,7 @@ import { Packages } from "@/components/home/Packages";
 import { GalleryPreview } from "@/components/home/GalleryPreview";
 import { WhyUs } from "@/components/home/WhyUs";
 import { Testimonials } from "@/components/home/Testimonials";
+import { FindUs } from "@/components/home/FindUs";
 import { FilmCTA } from "@/components/home/FilmCTA";
 
 export default function HomePage() {
@@ -17,6 +18,7 @@ export default function HomePage() {
       <GalleryPreview />
       <WhyUs />
       <Testimonials />
+      <FindUs />
       <FilmCTA />
     </>
   );

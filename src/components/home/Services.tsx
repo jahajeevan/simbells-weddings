@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
+import { FloralDivider } from "@/components/FloralDivider";
 import { SERVICE_COLLECTIONS } from "@/lib/content";
 
 export function Services() {
@@ -17,6 +18,9 @@ export function Services() {
               Six worlds, <span className="italic font-light text-maroon">one</span> celebration
             </h2>
           </Reveal>
+          <Reveal delay={0.08}>
+            <FloralDivider className="mt-6" />
+          </Reveal>
           <Reveal delay={0.1}>
             <p className="text-ink-soft mt-6 leading-relaxed">
               Every element of your day, composed by a single team. Explore the
@@ -29,7 +33,7 @@ export function Services() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {SERVICE_COLLECTIONS.map((c, i) => (
             <Reveal key={c.key} delay={(i % 3) * 0.08}>
-              <Link href="/services" className="group block">
+              <Link href={`/services/${c.key}`} className="group block">
                 <article className="img-zoom relative aspect-[3/4] rounded-sm overflow-hidden">
                   <Image
                     src={c.image}
@@ -77,7 +81,7 @@ export function Services() {
               href="/services"
               className="eyebrow inline-block text-ink border border-ink/30 rounded-full px-9 py-4 hover:bg-ink hover:text-ivory transition-all duration-300"
             >
-              View all 33 services
+              View All
             </Link>
           </div>
         </Reveal>

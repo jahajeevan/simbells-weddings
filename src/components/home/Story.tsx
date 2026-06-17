@@ -1,18 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
+import { FloralSprig } from "@/components/FloralDivider";
 import { BUSINESS } from "@/lib/content";
 
 export function Story() {
   return (
-    <section className="bg-ivory section-y section-x overflow-hidden">
-      <div className="wrap grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <section className="bg-ivory section-y section-x overflow-hidden relative">
+      {/* soft floral accents */}
+      <FloralSprig
+        className="hidden md:block absolute -top-4 right-6 lg:right-16 opacity-25 w-16 h-16"
+        color="var(--gold-deep)"
+      />
+      <FloralSprig
+        className="hidden md:block absolute bottom-4 left-6 lg:left-16 opacity-20 w-14 h-14 rotate-180"
+        color="var(--gold-deep)"
+      />
+      <div className="wrap grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative">
         {/* Image collage */}
         <Reveal className="relative">
           <div className="img-zoom relative aspect-[4/5] rounded-sm overflow-hidden">
             <Image
-              src="/images/flowers1.jpg"
-              alt="A cinematic black-and-white portrait of a couple beneath the bridal veil"
+              src="/images/mandap1.jpg"
+              alt="An ornate Indian wedding mandap with chandelier and floral arrangements"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"

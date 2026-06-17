@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
-import { ChevronLeft, ChevronRight, Check } from "lucide-react";
+import { ChevronLeft, ChevronRight, Check, AlertCircle } from "lucide-react";
 import { BUSINESS, waLink } from "@/lib/content";
 import { saveLead } from "@/lib/supabase";
 import { WhatsAppGlyph } from "@/components/WhatsAppButton";
@@ -23,12 +24,16 @@ interface Form {
   guests: string;
   budget: string;
   requirements: string[];
-  name: string;
+  firstName: string;
+  lastName: string;
   phone: string;
   notes: string;
 }
 
-const INIT: Form = { eventType: "", date: "", venue: "", guests: "", budget: "", requirements: [], name: "", phone: "", notes: "" };
+const INIT: Form = {
+  eventType: "", date: "", venue: "", guests: "", budget: "", requirements: [],
+  firstName: "", lastName: "", phone: "", notes: "",
+};
 
 const STEPS = [
   { t: "The Occasion", s: "What are we celebrating?" },
@@ -40,25 +45,85 @@ const STEPS = [
   { t: "Your Details", s: "How can Simon reach you?" },
 ];
 
-export function PlanWizard() {
+// Indian mobile: 10 digits, starts with 6/7/8/9
+const PHONE_REGEX = /^[6-9]\d{9}$/;
+const validPhone = (p: string) => PHONE_REGEX.test(p);
+
+function WizardInner() {
+  const search = useSearchParams();
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<Form>(INIT);
   const [done, setDone] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [showErrors, setShowErrors] = useState(false);
+  const [prefilledFrom, setPrefilledFrom] = useState<string>("");
+
+  // Read query params from URL (e.g. /plan?event=Wedding&services=Photography,Videography&from=weddings)
+  useEffect(() => {
+    const eventParam = search.get("event") || "";
+    const servicesParam = search.get("services") || "";
+    const from = search.get("from") || "";
+    if (eventParam || servicesParam) {
+      const validEvent = EVENT_TYPES.includes(eventParam) ? eventParam : "";
+      const services = servicesParam
+        ? servicesParam.split(",").map((s) => s.trim()).filter((s) => REQUIREMENTS.includes(s))
+        : [];
+      setForm((f) => ({ ...f, eventType: validEvent, requirements: services }));
+      setPrefilledFrom(from);
+      // If event was provided, skip the first step (Occasion) — start at Date.
+      if (validEvent) setStep(1);
+    }
+  }, [search]);
 
   const pct = ((step + 1) / STEPS.length) * 100;
   const set = (patch: Partial<Form>) => setForm((f) => ({ ...f, ...patch }));
   const toggleReq = (r: string) =>
     set({ requirements: form.requirements.includes(r) ? form.requirements.filter((x) => x !== r) : [...form.requirements, r] });
 
-  const canNext = () =>
-    [form.eventType, form.date, form.venue, form.guests, form.budget, form.requirements.length > 0, form.name && form.phone][step];
+  // Phone helper — strip non-digits, cap at 10
+  const onPhone = (v: string) => set({ phone: v.replace(/\D/g, "").slice(0, 10) });
+
+  // Errors for the contact step
+  const firstNameError = showErrors && form.firstName.trim().length === 0
+    ? "First name is required."
+    : null;
+  const phoneError = showErrors && !validPhone(form.phone)
+    ? form.phone.length === 0
+      ? "Phone number is required."
+      : form.phone.length !== 10
+        ? "Phone must be exactly 10 digits."
+        : "Enter a valid Indian mobile (starts with 6, 7, 8 or 9)."
+    : null;
+
+  const stepReady = (s: number) => {
+    switch (s) {
+      case 0: return !!form.eventType;
+      case 1: return !!form.date;
+      case 2: return form.venue.trim().length > 0;
+      case 3: return !!form.guests;
+      case 4: return !!form.budget;
+      case 5: return form.requirements.length > 0;
+      case 6: return form.firstName.trim().length > 0 && validPhone(form.phone);
+      default: return true;
+    }
+  };
+
+  const canNext = stepReady(step);
+
+  const onNext = () => {
+    if (step === 6) return; // final handled by submit
+    if (!canNext) { setShowErrors(true); return; }
+    setShowErrors(false);
+    setStep((s) => s + 1);
+  };
+
+  const fullName = `${form.firstName.trim()} ${form.lastName.trim()}`.trim();
 
   const buildMessage = () =>
     `Hello ${BUSINESS.owner}! ✦ New enquiry via simbells.com
 
-Name: ${form.name}
-Phone: ${form.phone}
+Name: ${fullName}
+Phone: +91 ${form.phone}
 Occasion: ${form.eventType}
 Date: ${form.date}
 Venue: ${form.venue}
@@ -70,10 +135,11 @@ Notes: ${form.notes || "—"}
 Looking forward to making this beautiful!`;
 
   const submit = async () => {
+    if (!stepReady(6)) { setShowErrors(true); return; }
     setBusy(true);
     try {
       await saveLead({
-        name: form.name,
+        name: fullName,
         phone: form.phone,
         event_type: form.eventType,
         event_date: form.date || null,
@@ -108,7 +174,7 @@ Looking forward to making this beautiful!`;
         <a href={`tel:${BUSINESS.phonesE164[0]}`} className="font-display text-maroon text-2xl mt-6 block hover:text-gold-deep transition-colors">
           {BUSINESS.phones[0]}
         </a>
-        <button onClick={() => { setDone(false); setForm(INIT); setStep(0); }} className="eyebrow text-stone mt-8 hover:text-ink transition-colors">
+        <button onClick={() => { setDone(false); setForm(INIT); setStep(0); setShowErrors(false); }} className="eyebrow text-stone mt-8 hover:text-ink transition-colors">
           Submit another enquiry
         </button>
       </div>
@@ -122,6 +188,16 @@ Looking forward to making this beautiful!`;
 
   return (
     <div className="max-w-2xl mx-auto">
+      {/* Prefill notice */}
+      {prefilledFrom && step <= 5 && (
+        <div className="mb-6 bg-gold/10 border border-gold/40 rounded-sm px-4 py-3 flex items-start gap-3">
+          <span className="text-gold-deep">✦</span>
+          <p className="text-ink-soft text-sm font-serif italic">
+            We&apos;ve pre-filled your selections — feel free to change anything.
+          </p>
+        </div>
+      )}
+
       {/* Progress */}
       <div className="mb-10">
         <div className="flex justify-between items-baseline mb-3">
@@ -217,23 +293,82 @@ Looking forward to making this beautiful!`;
 
           {step === 6 && (
             <div className="space-y-5">
-              <div>
-                <label className="eyebrow text-stone text-[0.6rem] block mb-2">Your Name</label>
-                <input type="text" placeholder="Full name" value={form.name} onChange={(e) => set({ name: e.target.value })}
-                  className="w-full px-5 py-3.5 border border-champagne rounded-sm focus:border-gold focus:outline-none text-ink" />
-              </div>
-              <div>
-                <label className="eyebrow text-stone text-[0.6rem] block mb-2">WhatsApp Number</label>
-                <div className="flex">
-                  <span className="px-4 py-3.5 bg-cream border border-r-0 border-champagne rounded-l-sm text-ink-soft">+91</span>
-                  <input type="tel" placeholder="99999 99999" value={form.phone} onChange={(e) => set({ phone: e.target.value })}
-                    className="flex-1 px-5 py-3.5 border border-champagne rounded-r-sm focus:border-gold focus:outline-none text-ink" />
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="eyebrow text-stone text-[0.6rem] block mb-2">
+                    First name <span className="text-maroon">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="First name"
+                    value={form.firstName}
+                    onChange={(e) => set({ firstName: e.target.value })}
+                    aria-invalid={!!firstNameError}
+                    className={`w-full px-5 py-3.5 border rounded-sm focus:outline-none text-ink ${
+                      firstNameError ? "border-red-500" : "border-champagne focus:border-gold"
+                    }`}
+                  />
+                  {firstNameError && (
+                    <p className="mt-2 text-red-600 text-xs flex items-center gap-1.5">
+                      <AlertCircle className="w-3 h-3" /> {firstNameError}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <label className="eyebrow text-stone text-[0.6rem] block mb-2">
+                    Last name <span className="text-stone normal-case">(optional)</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Last name"
+                    value={form.lastName}
+                    onChange={(e) => set({ lastName: e.target.value })}
+                    className="w-full px-5 py-3.5 border border-champagne rounded-sm focus:border-gold focus:outline-none text-ink"
+                  />
                 </div>
               </div>
+
               <div>
-                <label className="eyebrow text-stone text-[0.6rem] block mb-2">Anything else? (optional)</label>
-                <textarea rows={3} placeholder="Tell us about your vision..." value={form.notes} onChange={(e) => set({ notes: e.target.value })}
-                  className="w-full px-5 py-3.5 border border-champagne rounded-sm focus:border-gold focus:outline-none text-ink resize-none" />
+                <label className="eyebrow text-stone text-[0.6rem] block mb-2">
+                  WhatsApp number <span className="text-maroon">*</span>
+                </label>
+                <div className="flex">
+                  <span className="px-4 py-3.5 bg-cream border border-r-0 border-champagne rounded-l-sm text-ink-soft">+91</span>
+                  <input
+                    type="tel"
+                    inputMode="numeric"
+                    autoComplete="tel-national"
+                    pattern="[6-9][0-9]{9}"
+                    placeholder="10-digit mobile"
+                    value={form.phone}
+                    onChange={(e) => onPhone(e.target.value)}
+                    aria-invalid={!!phoneError}
+                    maxLength={10}
+                    className={`flex-1 px-5 py-3.5 border rounded-r-sm focus:outline-none text-ink ${
+                      phoneError ? "border-red-500" : "border-champagne focus:border-gold"
+                    }`}
+                  />
+                </div>
+                {phoneError ? (
+                  <p className="mt-2 text-red-600 text-xs flex items-center gap-1.5">
+                    <AlertCircle className="w-3 h-3" /> {phoneError}
+                  </p>
+                ) : (
+                  <p className="mt-2 text-stone text-xs font-serif italic">10-digit Indian mobile, no spaces.</p>
+                )}
+              </div>
+
+              <div>
+                <label className="eyebrow text-stone text-[0.6rem] block mb-2">
+                  Anything else? <span className="text-stone normal-case">(optional)</span>
+                </label>
+                <textarea
+                  rows={3}
+                  placeholder="Tell us about your vision..."
+                  value={form.notes}
+                  onChange={(e) => set({ notes: e.target.value })}
+                  className="w-full px-5 py-3.5 border border-champagne rounded-sm focus:border-gold focus:outline-none text-ink resize-none"
+                />
               </div>
             </div>
           )}
@@ -249,8 +384,7 @@ Looking forward to making this beautiful!`;
           </button>
           {step < STEPS.length - 1 ? (
             <button
-              onClick={() => setStep((s) => s + 1)}
-              disabled={!canNext()}
+              onClick={onNext}
               className="eyebrow flex items-center gap-1.5 bg-maroon text-ivory px-8 py-3.5 rounded-full hover:bg-ink transition-colors disabled:opacity-40"
             >
               Continue <ChevronRight className="w-4 h-4" />
@@ -258,7 +392,7 @@ Looking forward to making this beautiful!`;
           ) : (
             <button
               onClick={submit}
-              disabled={!canNext() || busy}
+              disabled={busy}
               className="eyebrow flex items-center gap-2.5 bg-[#25D366] text-white px-8 py-3.5 rounded-full hover:brightness-95 transition-all disabled:opacity-40"
             >
               <WhatsAppGlyph className="w-4 h-4" /> {busy ? "Sending..." : "Send to Simon"}
@@ -271,5 +405,14 @@ Looking forward to making this beautiful!`;
         Your details stay private — shared only with {BUSINESS.owner}. Expect a reply within minutes.
       </p>
     </div>
+  );
+}
+
+// useSearchParams must be wrapped in Suspense in Next.js 16
+export function PlanWizard() {
+  return (
+    <Suspense fallback={<div className="max-w-2xl mx-auto py-16 text-center text-stone">Loading…</div>}>
+      <WizardInner />
+    </Suspense>
   );
 }

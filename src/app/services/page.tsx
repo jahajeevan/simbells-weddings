@@ -31,7 +31,7 @@ export default function ServicesPage() {
             <div key={c.key} className={`section-x py-16 md:py-24 ${i % 2 === 1 ? "bg-cream" : "bg-ivory"}`}>
               <div className={`wrap grid lg:grid-cols-2 gap-10 lg:gap-16 items-center`}>
                 <Reveal className={flip ? "lg:order-2" : ""}>
-                  <div className="img-zoom relative aspect-[5/4] rounded-sm overflow-hidden">
+                  <Link href={`/services/${c.key}`} className="block img-zoom relative aspect-[5/4] rounded-sm overflow-hidden group">
                     <Image
                       src={c.image}
                       alt={`${c.title} ${c.italic}`}
@@ -39,7 +39,12 @@ export default function ServicesPage() {
                       sizes="(max-width:1024px) 100vw, 50vw"
                       className="object-cover"
                     />
-                  </div>
+                    <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/20 transition-colors duration-300 flex items-center justify-center">
+                      <span className="eyebrow text-ivory bg-ink/70 px-5 py-2.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                        View collection →
+                      </span>
+                    </div>
+                  </Link>
                 </Reveal>
 
                 <div className={flip ? "lg:order-1" : ""}>
@@ -67,14 +72,22 @@ export default function ServicesPage() {
                     </ul>
                   </Reveal>
                   <Reveal delay={0.2}>
-                    <a
-                      href={waLink(`Hello! I'd like to know more about ${c.title} ${c.italic} services.`)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="eyebrow inline-block mt-8 text-ink border-b-2 border-gold pb-1.5 hover:text-gold-deep transition-colors"
-                    >
-                      Enquire about {c.title.toLowerCase()} →
-                    </a>
+                    <div className="mt-8 flex flex-wrap items-center gap-6">
+                      <Link
+                        href={`/services/${c.key}`}
+                        className="eyebrow bg-maroon text-ivory px-7 py-3.5 rounded-full hover:bg-ink transition-colors"
+                      >
+                        Explore {c.title.toLowerCase()} →
+                      </Link>
+                      <a
+                        href={waLink(`Hello! I'd like to know more about ${c.title} ${c.italic} services.`)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="eyebrow text-ink border-b-2 border-gold pb-1.5 hover:text-gold-deep transition-colors"
+                      >
+                        Enquire on WhatsApp
+                      </a>
+                    </div>
                   </Reveal>
                 </div>
               </div>

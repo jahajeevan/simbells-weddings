@@ -35,7 +35,7 @@ export default function AboutPage() {
         <div className="wrap grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <Reveal className="relative order-2 lg:order-1">
             <div className="img-zoom relative aspect-[4/5] rounded-sm overflow-hidden">
-              <Image src="/images/flowers1.jpg" alt="Cinematic veil portrait" fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" />
+              <Image src="/images/mandap1.jpg" alt="Ornate Indian wedding mandap by SimBells" fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" />
             </div>
             <div className="absolute -bottom-6 -right-4 md:-right-8 bg-maroon text-ivory px-7 py-5 rounded-sm">
               <div className="font-display italic text-2xl">{BUSINESS.owner}</div>

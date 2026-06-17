@@ -107,24 +107,10 @@ export default function ContactPage() {
             </Reveal>
           </div>
 
-          {/* Form + Map */}
-          <div className="space-y-8">
-            <Reveal delay={0.1}>
-              <ContactForm />
-            </Reveal>
-            <Reveal delay={0.15}>
-              <div className="min-h-[320px] rounded-sm overflow-hidden border border-champagne">
-                <iframe
-                  title="SimBells location map"
-                  src={`https://www.google.com/maps?q=${BUSINESS.mapsQuery}&output=embed`}
-                  className="w-full min-h-[320px]"
-                  style={{ border: 0, filter: "saturate(0.85) contrast(1.05)" }}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
-            </Reveal>
-          </div>
+          {/* Form */}
+          <Reveal delay={0.1}>
+            <ContactForm />
+          </Reveal>
         </div>
       </section>
     </>

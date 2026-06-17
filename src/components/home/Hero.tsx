@@ -32,9 +32,6 @@ export function Hero() {
         <div className="absolute inset-0 scrim-full" />
       </motion.div>
 
-      {/* Top thin gold frame line */}
-      <div className="absolute top-24 inset-x-6 md:inset-x-10 lg:inset-x-16 h-px bg-champagne/30 z-10" />
-
       {/* Vertical caption */}
       <div className="hidden md:block absolute right-8 top-1/2 -translate-y-1/2 z-10">
         <span className="eyebrow text-champagne/80 [writing-mode:vertical-rl]">

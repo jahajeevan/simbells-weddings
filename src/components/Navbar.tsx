@@ -56,14 +56,12 @@ export function Navbar() {
           />
           <span className="flex flex-col leading-none">
             <span className="font-display text-2xl md:text-[2.1rem] tracking-[0.14em] leading-none flex">
-              {"SIMBELLS".split("").map((ch, i) => (
-                <span
-                  key={i}
-                  style={{ color: i % 2 === 0 ? (solid ? "#C8102E" : "#EC6075") : (solid ? "#1B3A8C" : "#93B2F2") }}
-                >
-                  {ch}
-                </span>
-              ))}
+              {"SIMBELLS".split("").map((ch, i) => {
+                let color = solid ? "#2B2118" : "#FBF7EF"; // neutral ink/ivory
+                if (ch === "S" && i === 0) color = solid ? "#C8102E" : "#F08596"; // S in red
+                else if (ch === "B") color = solid ? "#1B3A8C" : "#93B2F2"; // B in navy
+                return <span key={i} style={{ color }}>{ch}</span>;
+              })}
             </span>
             <span className={`font-serif italic text-[0.72rem] md:text-[0.8rem] tracking-[0.28em] mt-1.5 ${solid ? "text-gold-deep" : "text-champagne"}`}>
               Wedding &amp; Events
@@ -75,7 +73,7 @@ export function Navbar() {
         </Link>
 
         {/* Right nav (desktop) */}
-        <nav className={`hidden lg:flex items-center gap-7 flex-1 justify-end ${ink}`}>
+        <nav className={`hidden lg:flex items-center gap-5 xl:gap-7 flex-1 justify-end ${ink}`}>
           {NAV_LINKS.slice(3).map((l) => (
             <Link
               key={l.href}
@@ -87,7 +85,7 @@ export function Navbar() {
           ))}
           <Link
             href="/plan"
-            className="eyebrow text-[0.7rem] border border-gold text-gold-deep px-5 py-2.5 rounded-full hover:bg-gold hover:text-ink transition-all"
+            className="eyebrow text-[0.7rem] whitespace-nowrap border border-gold text-gold-deep px-5 py-2.5 rounded-full hover:bg-gold hover:text-ink transition-all"
           >
             Plan My Event
           </Link>

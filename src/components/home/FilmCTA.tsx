@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
+import { FloralDivider } from "@/components/FloralDivider";
 import { BUSINESS, waLink } from "@/lib/content";
 import { WhatsAppGlyph } from "@/components/WhatsAppButton";
 
@@ -20,9 +21,7 @@ export function FilmCTA() {
 
       <div className="wrap relative w-full text-center">
         <Reveal>
-          <div className="rule-gold max-w-xs mx-auto mb-8">
-            <span className="text-gold text-xs">✦</span>
-          </div>
+          <FloralDivider className="mb-8 mx-auto" color="var(--gold)" />
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="font-display text-ivory text-5xl md:text-6xl lg:text-7xl leading-[0.98]">

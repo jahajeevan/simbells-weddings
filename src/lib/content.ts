@@ -18,7 +18,10 @@ export const BUSINESS = {
   whatsapp: "919965057920",
   instagram: { handle: "@simbells_event_planner", url: "https://instagram.com/simbells_event_planner" },
   facebook: { handle: "SimBells Events", url: "https://www.facebook.com/profile.php?id=100063786083655" },
-  mapsQuery: "K.P.R.S+Towers,+Tennur+High+Road,+Tennur,+Trichy+620017",
+  mapsQuery: "SimBells+Wedding+And+Events,+Tennur+High+Road,+Tennur,+Trichy",
+  mapsEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3914.6!2d78.6833499!3d10.8170537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baaf56699c780bf%3A0x65b5cb9af3b35c82!2sSimBells%20Wedding%20And%20Events!5e0!3m2!1sen!2sin!4v1718000000000",
+  mapsLink: "https://maps.app.goo.gl/AXw5K2kABRbnNKrP7",
+  coords: { lat: 10.8170537, lng: 78.6833499 },
 };
 
 export function waLink(message: string) {
@@ -34,7 +37,9 @@ export const NAV_LINKS = [
   { href: "/contact", label: "Contact" },
 ];
 
-// Service collections — grouped editorially
+// Service collections — grouped editorially.
+// prefillEvent + prefillServices feed the Plan My Event wizard when the
+// "Plan My Event" button is clicked inside a service detail page.
 export const SERVICE_COLLECTIONS = [
   {
     key: "weddings",
@@ -43,8 +48,12 @@ export const SERVICE_COLLECTIONS = [
     italic: "Planning",
     blurb:
       "From the first muhurtham to the final farewell, we orchestrate every ritual, every detail, every emotion — so your family simply celebrates.",
-    image: "/images/indian6.jpg",
+    longBlurb:
+      "A SimBells wedding is a single, calm choreography of dozens of moving pieces — booked, briefed, dressed and timed by one team. We work with families across Trichy to honour the traditions that matter, design the moments worth remembering, and quietly handle everything in between.",
+    image: "/images/mandap1.jpg",
     services: ["Wedding Planning", "Pre Wedding Shoot", "Post Wedding Shoot", "Welcome Entries"],
+    prefillEvent: "Wedding",
+    prefillServices: ["Wedding Planning"],
   },
   {
     key: "decoration",
@@ -53,8 +62,12 @@ export const SERVICE_COLLECTIONS = [
     italic: "& Stage",
     blurb:
       "Mandaps that take the breath away. Traditional grandeur and modern themes, designed around your story and built to be remembered.",
-    image: "/images/candid1.jpg",
+    longBlurb:
+      "Our décor team builds mandaps, stages and welcome entries that feel personal — from traditional gold and jasmine to florals, fabrics and bespoke themes. Every backdrop is designed for both the family in the hall and the camera in the corner.",
+    image: "/images/florals1.jpg",
     services: ["Wedding Decoration", "Traditional Decoration", "Stage Decoration", "Theme Decoration", "Pandhal / Tent Setup"],
+    prefillEvent: "Wedding",
+    prefillServices: ["Stage & Décor"],
   },
   {
     key: "photography",
@@ -63,8 +76,12 @@ export const SERVICE_COLLECTIONS = [
     italic: "& Film",
     blurb:
       "Cinematic frames that hold the goosebumps forever. Candid, traditional, aerial — the way your day actually felt.",
+    longBlurb:
+      "From traditional album coverage to candid storytelling, cinematic films and drone aerials — our in-house photo and film team keeps the camera quiet, the lighting kind, and the resulting album something you'll re-open for years.",
     image: "/images/hero2.jpg",
     services: ["Photography", "Videography", "Candid Photography", "Drone Photography", "360 Camera", "Mirror Camera"],
+    prefillEvent: "Wedding",
+    prefillServices: ["Photography", "Videography"],
   },
   {
     key: "entertainment",
@@ -73,8 +90,12 @@ export const SERVICE_COLLECTIONS = [
     italic: "& Shows",
     blurb:
       "Music, lights and spectacle that fill the room with joy. From Chenda Melam to a full DJ floor, the celebration never dips.",
+    longBlurb:
+      "We curate the evening — from the auspicious entry of Nadaswaram and Chenda Melam, through dance and magic shows, to a closing DJ floor under colour-mapped lighting. Every act sized to your space and guest list.",
     image: "/images/bride1.jpg",
     services: ["DJ", "Dance Shows", "Magic Shows", "Light Music Orchestra", "Chenda Melam", "Gun Shot Effects", "Celebrity Events", "Entertainment Events"],
+    prefillEvent: "Wedding",
+    prefillServices: ["DJ & Music", "Entertainment Shows"],
   },
   {
     key: "events",
@@ -83,8 +104,12 @@ export const SERVICE_COLLECTIONS = [
     italic: "& Occasions",
     blurb:
       "Beyond the wedding — every milestone deserves its moment. Baby showers, birthdays, housewarmings and corporate evenings.",
-    image: "/images/indian5.jpg",
+    longBlurb:
+      "Baby showers, first birthdays, housewarmings, anniversaries, corporate evenings — the smaller occasions matter to us as much as the grand ones. Same team, same care, scaled to suit.",
+    image: "/images/candid1.jpg",
     services: ["Baby Shower Events", "Birthday Events", "House Warming", "Corporate Events", "Kids Activities", "Ring Throw Games"],
+    prefillEvent: "Birthday",
+    prefillServices: ["Stage & Décor"],
   },
   {
     key: "experiences",
@@ -93,10 +118,18 @@ export const SERVICE_COLLECTIONS = [
     italic: "Experiences",
     blurb:
       "The little luxuries guests never forget — live counters, immersive lighting, crystalline sound and playful surprises.",
+    longBlurb:
+      "Live counters, chocolate fountains, 360 cameras, jumping balloons, audio rigs that fill the room without overpowering it — the playful and the practical touches your guests will tell their friends about.",
     image: "/images/indian11.jpg",
     services: ["Live Counters", "Audio Systems", "Lighting", "Jumping Balloon", "360 Camera"],
+    prefillEvent: "Wedding",
+    prefillServices: ["Live Counters", "Lighting & Audio"],
   },
 ];
+
+export function getCollection(slug: string) {
+  return SERVICE_COLLECTIONS.find((c) => c.key === slug);
+}
 
 // Flat list of every service (for the services page index)
 export const ALL_SERVICES = [
@@ -226,7 +259,8 @@ export const GALLERY = [
   { src: "/images/indian6.jpg", category: "Reception", span: "wide" },
   { src: "/images/hero2.jpg", category: "Photography", span: "normal" },
   { src: "/images/indian5.jpg", category: "Wedding", span: "tall" },
-  { src: "/images/flowers1.jpg", category: "Photography", span: "normal" },
+  { src: "/images/florals1.jpg", category: "Decoration", span: "normal" },
+  { src: "/images/mandap1.jpg", category: "Wedding", span: "tall" },
   { src: "/images/ceremony1.jpg", category: "Decoration", span: "normal" },
   { src: "/images/couple2.jpg", category: "Wedding", span: "wide" },
   { src: "/images/decor1.jpg", category: "Decoration", span: "normal" },
