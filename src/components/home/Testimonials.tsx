@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -82,6 +83,15 @@ export function Testimonials() {
                   />
                 ))}
               </div>
+            </div>
+
+            <div className="mt-8">
+              <Link
+                href="/reviews"
+                className="eyebrow text-maroon border-b border-maroon/40 pb-0.5 hover:border-maroon transition-colors text-sm"
+              >
+                Read all reviews →
+              </Link>
             </div>
           </div>
         </div>
